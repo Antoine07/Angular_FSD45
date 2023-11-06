@@ -10,6 +10,7 @@ const pathStatJSON = path.join(__dirname, `../src/${csvFilePath}/stat.json`);
 
 const router: Router = express.Router();
 
+// getPassengers api/passengers
 router.get("/passengers", async function (req: Request, res: Response) {
     const data = await Passengers();
     log(data)
