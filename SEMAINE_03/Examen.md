@@ -54,20 +54,30 @@ api/passengers/Survived/:status
 
 ``` 
 
-2. Créez la page de login, page principale de l'application. Une fois connecté on sera redirigé vers la page pour lancer les analyses statistiques.
+2. Créez la page de login, page principale de l'application. Une fois connecté on sera redirigé vers la page pour lancer les analyses statistiques, vous pouvez faire page à la fin.
 
-3. Créez la page de recherche à proprement parlée, elle comportera un menu principale permettant de se connecter et déconnecter.
+3. Créez la page de **recherche** à proprement parlée, elle comportera un menu principale permettant de se connecter et déconnecter.
 
-*Remarque vous pouvez modifier les routes (fichier routes.ts) de votre API, pour récupérer les données de manière plus spécifique.*
+*Remarque vous pouvez modifier les routes (fichier routes.ts) de votre API, pour récupérer les données de manière plus spécifique, attention à ne pas casser le code de l'API.*
 
-Le choix du sexe, de l'age et de la classe (Pclass dans le dataset) seront optionnels. Notez bien que vous faites ici que du GET, l'API.
+Le choix du sexe, de l'age et de la classe (Pclass dans le dataset) seront optionnels. Notez bien que vous faites ici que du GET, l'API pour l'instant. Vous pouvez découper le développement de l'application, faite d'abord une recherche sur le Sex, puis l'age et enfin la classe. On cherche à afficher les survivants.
 
 ```text
 Sex : [] Age : [] Classe []
 [Analyser]
 ```
 
-Si vous souhaitez sauvegarder des résultats dans le fichier stat.json (voir le dossier Data), voyez la structure des données dans le fichier stat.json
+- Si vous voulez vous pouvez également ajouter une option pour avoir ceux qui n'ont pas survécu. 
+
+```text
+Suvived : () yes (*) no
+Sex : [] Age : [] Classe []
+[Analyser]
+```
+
+4. Persistance des données
+
+Si vous souhaitez sauvegarder des résultats dans le fichier stat.json (voir le dossier Data), voyez la structure des données dans le fichier stat.json, et inspérez vous de cette structure.
 
 ```json
 {
@@ -89,6 +99,8 @@ Si vous souhaitez sauvegarder des résultats dans le fichier stat.json (voir le 
     }
 }
 ``` 
+
+## Remarques 
 
 Dans un terminal, si vous avez **curl** tester la ligne suivante :
 
@@ -114,4 +126,4 @@ Introduisez les éléments suivants dans la rechercher
 
 - L'écart type
 
-5. (facultatif) Proposez une autre recherche sur l'analyse de ses données.
+5. (facultatif) Inventez une autre recherche sur l'analyse de ces données.
