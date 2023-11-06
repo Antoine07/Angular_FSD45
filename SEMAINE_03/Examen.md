@@ -25,7 +25,7 @@ npm install
 
 - 5. Vous devez faire la partie interface utilisateur à partir du chapitre qui suit ci-dessous.
 
-- 6. Si vous avez le temps utilisez MongoDB pour mettre les données des résultats statistiques en base de données.
+- 6. Si vous avez le temps enregistrez les données des statistiques dans le fichier stat.json dans le dossier Data.
 
 ## Analyse des données & pages à réalisées
 
