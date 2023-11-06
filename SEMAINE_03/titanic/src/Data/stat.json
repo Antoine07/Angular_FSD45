@@ -1,0 +1,18 @@
+{
+    "Sex": {
+        "Survived": 0,
+        "Died": 0
+    },
+    "SexAge": {
+        "Survived": 0,
+        "Died": 0
+    },
+    "SexAgePclass": {
+        "Survived": 10,
+        "Died": 0
+    },
+    "No": {
+        "Survived": 0,
+        "Died": 0
+    }
+}
