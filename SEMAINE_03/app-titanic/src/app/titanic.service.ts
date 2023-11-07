@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, filter, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Passenger, hydratePassengers } from './Passenger';
+import { Passenger, hydratePassengers, Search } from './Passenger';
 
 // On précisera le type de la requête à effectuer
 const httpOptions = {
@@ -30,9 +30,9 @@ export class TitanicService {
     return this.http.get<Passenger[]>(this.urlApi + '/passengers', httpOptions).pipe(map(hydratePassengers));
   }
 
-  search(sex: string): Observable<Passenger[]> {
+  search({ sex , age, plcass  } : Search ): Observable<Passenger[]> {
 
-    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}`, httpOptions).pipe(map(hydratePassengers));
+    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}?age=${age}&plcass=${plcass}`, httpOptions).pipe(map(hydratePassengers));
   }
 
 }

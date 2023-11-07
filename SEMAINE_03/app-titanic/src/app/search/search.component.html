@@ -8,6 +8,18 @@
             <input type="radio" formControlName="sex" value="male">
             Male
         </label>
+        
+    </div>
+    <div class="control">
+        <label class="radio">
+            Survived ?
+            <input type="radio" formControlName="survived" value="1">
+            yes
+        </label>
+        <label class="radio">
+            <input type="radio" formControlName="survived" value="0">
+            no
+        </label>
     </div>
     <div class="field">
         <label class="label">Age</label>
@@ -33,7 +45,32 @@
     </div>
 </form>
 
-
-<ul>
-    <li *ngFor="let item of results | async ">{{item.Name}}</li>
-</ul>
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Position">Name</abbr></th>
+            <th><abbr title="Position">Sex</abbr></th>
+            <th><abbr title="Played">Survived</abbr></th>
+            <th><abbr title="Played">Pclass</abbr></th>
+            <th><abbr title="Won">Age</abbr></th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th><abbr title="Position">Name</abbr></th>
+            <th><abbr title="Position">Sex</abbr></th>
+            <th><abbr title="Played">Survived</abbr></th>
+            <th><abbr title="Played">Pclass</abbr></th>
+            <th><abbr title="Won">Age</abbr></th>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr *ngFor="let p of results | async ">
+            <td>{{p.Name }}</td>
+            <td>{{p.Sex}}</td>
+            <td>{{p.Survived}}</td>
+            <td>{{p.Pclass}}</td>
+            <td>{{p.Age}}</td>
+        </tr>
+    </tbody>
+</table>

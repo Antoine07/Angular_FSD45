@@ -25,10 +25,12 @@ router.get("/passengers/Survived/:status", async function (req: Request, res: Re
     res.json(data);
 });
 
+
 router.get("/passengers/Sex/:s", async function (req: Request, res: Response) {
     const s: string = req.params.s;
-    const data = await PassengersSex(s);
-    log(data)
+    const q = req.query ;
+    const data = await PassengersSex(s, q);
+    // log(data)
 
     res.json(data);
 });

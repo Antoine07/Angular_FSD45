@@ -1,4 +1,4 @@
-export interface Passenger {
+export interface DataPassengers {
     PassengerId: string,
     Survived: string,
     Pclass: string,
@@ -15,4 +15,13 @@ export interface Passenger {
 
 export interface Survived{
     Survived: string,
+}
+
+export interface Passenger{
+    PassengerId: string,
+    Survived: string,
+    Pclass: string,
+    Name: string,
+    Sex: string,
+    Age: string,
 }

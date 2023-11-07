@@ -14,8 +14,8 @@ export class SearchComponent implements OnInit {
     {
       sex: new FormControl('', [Validators.required]),
       plcass: new FormControl('', [
-        
       ]),
+      survived: new FormControl('1', [Validators.required]),
       age: new FormControl('', [ Validators.min(0), Validators.max(85)]),
 
     }
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
 
     const { sex, age, plcass } = this.searchForm.value ;
 
-    this.results  = this.tS.search(sex); // async dans la vue 
+    this.results  = this.tS.search({ sex, age, plcass }); // async dans la vue 
    
   }
 }
