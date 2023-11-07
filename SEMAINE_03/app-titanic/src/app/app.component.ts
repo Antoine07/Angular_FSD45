@@ -17,8 +17,6 @@ export class AppComponent implements OnInit  {
     // test pour voir si on arrive à tout récupéer dans l'application Front
     // dans le service on va chercher la méthode nous permettant de récupérer les données
     // subscribre 
-    this.tS.getPassengers().subscribe( passengers =>
-      this.tS.setPassengers(passengers)
-    )
+    this.tS.getPassengers().subscribe( console.log) 
   }
 }
