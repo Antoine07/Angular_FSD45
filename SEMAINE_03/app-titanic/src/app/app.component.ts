@@ -10,13 +10,15 @@ export class AppComponent implements OnInit  {
   title = 'app-titanic';
 
   // on récupère le service 
-  constructor(private titanicS : TitanicService){}
+  constructor(private tS : TitanicService){}
 
   ngOnInit() {
 
     // test pour voir si on arrive à tout récupéer dans l'application Front
     // dans le service on va chercher la méthode nous permettant de récupérer les données
     // subscribre 
-    this.titanicS.getPassengers().subscribe(console.log)
+    this.tS.getPassengers().subscribe( passengers =>
+      this.tS.setPassengers(passengers)
+    )
   }
 }

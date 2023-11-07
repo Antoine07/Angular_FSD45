@@ -1,6 +1,6 @@
 'use strict';
 import express, { Router, Request, Response } from "express";
-import { Passengers, PassengersSurvived } from "./model";
+import { Passengers, PassengersSex, PassengersSurvived } from "./model";
 import { log } from "console";
 import { readFile, writeFile } from 'node:fs/promises';
 import path from "path";
@@ -20,6 +20,14 @@ router.get("/passengers", async function (req: Request, res: Response) {
 router.get("/passengers/Survived/:status", async function (req: Request, res: Response) {
     const status: string = req.params.status;
     const data = await PassengersSurvived(status);
+    log(data)
+
+    res.json(data);
+});
+
+router.get("/passengers/Sex/:s", async function (req: Request, res: Response) {
+    const s: string = req.params.s;
+    const data = await PassengersSex(s);
     log(data)
 
     res.json(data);

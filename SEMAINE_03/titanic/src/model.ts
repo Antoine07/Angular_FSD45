@@ -19,3 +19,9 @@ export async function PassengersSurvived(status: string): Promise<Passenger[]> {
 
     return jsonArray.filter(p => p.Survived == status);
 }
+
+export async function PassengersSex(sex: string): Promise<Passenger[]> {
+    const jsonArray = await csv().fromFile(pathTrainCSV);
+
+    return jsonArray.filter(p => p.Sex == sex);
+}

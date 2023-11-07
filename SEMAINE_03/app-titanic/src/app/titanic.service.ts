@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, filter, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Passenger } from './Passenger';
 
@@ -16,6 +16,8 @@ const httpOptions = {
 export class TitanicService {
   // l'adresse de ton API titanic voir npm run dev et les routes de l'API
   private urlApi = 'http://localhost:3002/api'
+  private passengers: Passenger[] = [];
+  public isLoad: boolean = false;
 
   // on récupère HttpClient qui est un module permettant de faire des requêtes HTTP (comme AJAX ou fetcj )
   constructor(private http: HttpClient) { }
@@ -47,5 +49,38 @@ export class TitanicService {
       })
 
     )
+  }
+
+  search(sex: string): Observable<Passenger[]> {
+
+    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}`, httpOptions).pipe(
+      map((passengers: Passenger[]) => {
+        const p: Passenger[] = [];
+        for (const pp of passengers) {
+
+          // On structure les données à récupérer
+          p.push({
+            PassengerId: pp.PassengerId,
+            Survived: pp.Survived,
+            Pclass: pp.Pclass,
+            Name: pp.Name,
+            Sex: pp.Sex,
+            Age: pp.Age
+          });
+        }
+
+        return p;
+      })
+    )
+  }
+
+  setPassengers(passengers: Passenger[]): void {
+    this.passengers = passengers;
+    this.isLoad = true;
+  }
+
+  getLoadPassengers(): Passenger[] {
+
+    return this.passengers;
   }
 }
