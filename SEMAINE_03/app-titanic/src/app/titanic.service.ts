@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, filter, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Passenger } from './Passenger';
+import { Passenger, hydratePassengers } from './Passenger';
 
 // On précisera le type de la requête à effectuer
 const httpOptions = {
@@ -16,8 +16,6 @@ const httpOptions = {
 export class TitanicService {
   // l'adresse de ton API titanic voir npm run dev et les routes de l'API
   private urlApi = 'http://localhost:3002/api'
-  private passengers: Passenger[] = [];
-  public isLoad: boolean = false;
 
   // on récupère HttpClient qui est un module permettant de faire des requêtes HTTP (comme AJAX ou fetcj )
   constructor(private http: HttpClient) { }
@@ -29,58 +27,12 @@ export class TitanicService {
    */
   getPassengers(): Observable<Passenger[]> {
 
-    return this.http.get<Passenger[]>(this.urlApi + '/passengers', httpOptions).pipe(
-      map((passengers: Passenger[]) => {
-        const p: Passenger[] = [];
-        for (const pp of passengers) {
-
-          // On structure les données à récupérer
-          p.push({
-            PassengerId: pp.PassengerId,
-            Survived: pp.Survived,
-            Pclass: pp.Pclass,
-            Name: pp.Name,
-            Sex: pp.Sex,
-            Age: pp.Age
-          });
-        }
-
-        return p;
-      })
-
-    )
+    return this.http.get<Passenger[]>(this.urlApi + '/passengers', httpOptions).pipe(map(hydratePassengers));
   }
 
   search(sex: string): Observable<Passenger[]> {
 
-    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}`, httpOptions).pipe(
-      map((passengers: Passenger[]) => {
-        const p: Passenger[] = [];
-        for (const pp of passengers) {
-
-          // On structure les données à récupérer
-          p.push({
-            PassengerId: pp.PassengerId,
-            Survived: pp.Survived,
-            Pclass: pp.Pclass,
-            Name: pp.Name,
-            Sex: pp.Sex,
-            Age: pp.Age
-          });
-        }
-
-        return p;
-      })
-    )
+    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}`, httpOptions).pipe(map(hydratePassengers));
   }
 
-  setPassengers(passengers: Passenger[]): void {
-    this.passengers = passengers;
-    this.isLoad = true;
-  }
-
-  getLoadPassengers(): Passenger[] {
-
-    return this.passengers;
-  }
 }
