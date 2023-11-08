@@ -79,24 +79,11 @@ Sex : [] Age : [] Classe []
 
 Si vous souhaitez sauvegarder des résultats dans le fichier stat.json (voir le dossier Data), voyez la structure des données dans le fichier stat.json, et inspérez vous de cette structure.
 
+Proposez une structure permettant d'enregistrer votre recherche.
+
 ```json
 {
-    "Sex": {
-        "Survived": 0,
-        "Died": 0
-    },
-    "SexAge": {
-        "Survived": 0,
-        "Died": 0
-    },
-    "SexAgePclass": {
-        "Survived": 0,
-        "Died": 0
-    },
-    "No": {
-        "Survived": 0,
-        "Died": 0
-    }
+    // ... TODO 
 }
 ``` 
 
