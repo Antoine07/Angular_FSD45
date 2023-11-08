@@ -20,18 +20,28 @@ export async function PassengersSurvived(status: string): Promise<Passenger[]> {
     return jsonArray.filter(p => p.Survived == status);
 }
 
-export async function PassengersSex(sex: string, q : any): Promise<Passenger[]> {
+export async function PassengersSex(sex: string, q: any): Promise<Passenger[]> {
     const jsonArray = await csv().fromFile(pathTrainCSV);
-    const { age, pclass, survived } = q ;
+    const { age, pclass, survived } = q;
+    console.log(q)
 
-    if (age && pclass)
-        return jsonArray.filter(p => (p.Sex == sex && p.Age == age && p.Pclass == pclass && p.Survived == survived));
-
-    if (age)
-        return jsonArray.filter(p => (p.Sex == sex && p.Age == age));
-
-    if (pclass)
-        return jsonArray.filter(p => (p.Sex == sex && p.Pclass == pclass));
-
-    return jsonArray.filter(p => (p.Sex == sex));
+    /**
+     * Dans les différents cas suivants on aura avec le OU passif de JS 
+     * 
+     * Dans le cas ou age, pclass, survived ne sont pas définies
+     * sex == 'female' && true && true && true
+     * 
+     * Dans le cas ou pclass, survived ne sont pas définies
+     * sex == 'female' && age == 40 && true && true
+     * 
+     * Ec 
+     */
+    const passengers = jsonArray.filter(p => (
+        p.Sex == sex 
+        && ( !survived || p.Survived == survived ) // le OU passif 
+        && ( !age || p.Age == age ) 
+        && ( !pclass || p.Pclass == pclass ) 
+        ) );
+   
+    return passengers; 
 }

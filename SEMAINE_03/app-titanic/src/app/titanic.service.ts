@@ -30,9 +30,9 @@ export class TitanicService {
     return this.http.get<Passenger[]>(this.urlApi + '/passengers', httpOptions).pipe(map(hydratePassengers));
   }
 
-  search({ sex , age, plcass  } : Search ): Observable<Passenger[]> {
+  search({ sex , age, pclass, survived  } : Search ): Observable<Passenger[]> {
 
-    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}?age=${age}&plcass=${plcass}`, httpOptions).pipe(map(hydratePassengers));
+    return this.http.get<Passenger[]>(`${this.urlApi}/passengers/Sex/${sex}?age=${age}&pclass=${pclass}&survived=${survived}`, httpOptions).pipe(map(hydratePassengers));
   }
 
 }

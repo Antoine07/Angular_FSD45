@@ -13,8 +13,7 @@ export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.fb.group(
     {
       sex: new FormControl('', [Validators.required]),
-      plcass: new FormControl('', [
-      ]),
+      pclass: new FormControl('', []),
       survived: new FormControl('1', [Validators.required]),
       age: new FormControl('', [ Validators.min(0), Validators.max(85)]),
 
@@ -39,9 +38,9 @@ export class SearchComponent implements OnInit {
   onSubmit() {
     console.log('Formulaire soumis avec succès!', this.searchForm.value);
 
-    const { sex, age, plcass } = this.searchForm.value ;
+    const { sex, age, pclass, survived } = this.searchForm.value ;
 
-    this.results  = this.tS.search({ sex, age, plcass }); // async dans la vue 
+    this.results  = this.tS.search({ sex, age, pclass, survived }); // async dans la vue 
    
   }
 }

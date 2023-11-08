@@ -17,6 +17,7 @@ export function hydratePassengers(passengers: any[]): Passenger[] {
 
 export interface Search {
     sex: string;
-    age: number;
-    plcass: string;
+    age?: number;
+    pclass?: string;
+    survived?: string;
 }
