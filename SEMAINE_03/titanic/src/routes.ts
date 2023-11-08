@@ -50,7 +50,7 @@ router.post("/stat", async function (req: Request, res: Response) {
 
     res.json(JSON.parse(contents))
 
-    // res.redirect('/stat');
+    // res.redirect('/stat'); // get pour afficher ou pas les réponses
 });
 
 router.get("/stat/", async function (req: Request, res: Response) {
