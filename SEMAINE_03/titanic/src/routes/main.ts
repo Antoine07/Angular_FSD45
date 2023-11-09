@@ -1,6 +1,6 @@
 'use strict';
 import express, { Router, Request, Response } from "express";
-import { Passengers, PassengersSex, PassengersSurvived } from "./model";
+import { Passengers, PassengersSex, PassengersSurvived } from "../model";
 import { log } from "console";
 import { readFile, writeFile } from 'node:fs/promises';
 import path from "path";

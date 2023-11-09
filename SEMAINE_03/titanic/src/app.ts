@@ -2,7 +2,7 @@
 import express, { Express } from 'express';
 
 import cors from "cors";
-import router from './routes';
+import router from './routes/main';
 import { port, host } from "./config";
 
 const app : Express = express();

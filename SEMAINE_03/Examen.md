@@ -114,3 +114,13 @@ Introduisez les éléments suivants dans la rechercher
 - L'écart type
 
 5. (facultatif) Inventez une autre recherche sur l'analyse de ces données.
+
+
+## indication 
+
+Pour les dépendances dans l'API on a les types pour TS à ajouter, a priori, déjà, dans le fichier package.json
+
+```bash
+npm i --save-dev @types/bcrypt
+npm i --save-dev @types/jsonwebtoken
+```

@@ -8,7 +8,7 @@
             <input type="radio" formControlName="sex" value="male">
             Male
         </label>
-        
+
     </div>
     <div class="control">
         <label class="radio">
@@ -61,33 +61,39 @@
         </div>
     </div>
 </form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th><abbr title="Position">Name</abbr></th>
-            <th><abbr title="Position">Sex</abbr></th>
-            <th><abbr title="Played">Survived</abbr></th>
-            <th><abbr title="Played">Pclass</abbr></th>
-            <th><abbr title="Won">Age</abbr></th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th><abbr title="Position">Name</abbr></th>
-            <th><abbr title="Position">Sex</abbr></th>
-            <th><abbr title="Played">Survived</abbr></th>
-            <th><abbr title="Played">Pclass</abbr></th>
-            <th><abbr title="Won">Age</abbr></th>
-        </tr>
-    </tfoot>
-    <tbody>
-        <tr *ngFor="let p of results | async ">
-            <td>{{p.Name }}</td>
-            <td>{{p.Sex}}</td>
-            <td>{{p.Survived}}</td>
-            <td>{{p.Pclass}}</td>
-            <td>{{p.Age}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="columns">
+    <div class="column">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th><abbr title="Position">Name</abbr></th>
+                    <th><abbr title="Position">Sex</abbr></th>
+                    <th><abbr title="Played">Survived</abbr></th>
+                    <th><abbr title="Played">Pclass</abbr></th>
+                    <th><abbr title="Won">Age</abbr></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th><abbr title="Position">Name</abbr></th>
+                    <th><abbr title="Position">Sex</abbr></th>
+                    <th><abbr title="Played">Survived</abbr></th>
+                    <th><abbr title="Played">Pclass</abbr></th>
+                    <th><abbr title="Won">Age</abbr></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr *ngFor="let p of results">
+                    <td>{{p.Name }}</td>
+                    <td>{{p.Sex}}</td>
+                    <td>{{p.Survived}}</td>
+                    <td>{{p.Pclass}}</td>
+                    <td>{{p.Age}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="column">
+        <canvas #graphTitanic width="400" height="400"></canvas>
+    </div>
+</div>
