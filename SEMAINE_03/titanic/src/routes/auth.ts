@@ -11,6 +11,7 @@ const router: Router = express.Router();
 router.post('/login', async (req: Request, res: Response) => {
     const { email, password } = trimAll(req.body); // récupération des données du formulaire de login (email et password)
 
+    // ERROR FIRST
     if (!email || !password) {
         return res.status(400).json({ message: "Veuillez remplir tous les champs" });
     }
@@ -18,19 +19,19 @@ router.post('/login', async (req: Request, res: Response) => {
     // on cherche l'utilisateur dans le mock
     const user: User | undefined = await findUser(email);
 
-    console.log(user);
-
     if (!user) {
-        return res.status(400).json({ message: "Identifiants incorrects" });
+        return res.status(400).json({ message: "1 Identifiants incorrects" });
     }
 
     if (!user.password) {
-        return res.status(400).json({ message: "Identifiants incorrects" });
+        return res.status(400).json({ message: "2 Identifiants incorrects" });
     }
 
-    // on compare le mot de passe en clair avec le mot de passe hashé en mock
-    const result = await bcrypt.compare(password, user.password);
+    // console.log( await bcrypt.hash("alan", 10 ) ); // le mot de passe hasher
 
+    // on compare le mot de passe en clair avec le mot de passe hashé en mock
+    const result = await bcrypt.compare(password, user.password); // true or false
+    // console.log("result", result)
     if (result) {
         const token = sign({
             _id: user.id /* l'id de l'utilisateur enregistré dans le payload du token */
@@ -39,9 +40,9 @@ router.post('/login', async (req: Request, res: Response) => {
         });
         res.cookie('token', token, { httpOnly: true }); // écriture du cookie avec la valeur du token jwt
         /* httpOnly protege des attaques XSS (quelqu'un de malveillant ne pourra pas lire le cookie facilement) */
-        return res.status(200).json({ message: "Vous êtes bien connecté !" });
+        return res.status(200).json({ message: "Vous êtes bien connecté !", success: true, token });
     } else {
-        return res.status(400).json({ message: "Identifiants incorrects" })
+        return res.status(400).json({ message: "HASH Identifiants incorrects", success: false, status : 0 })
     }
 
 });

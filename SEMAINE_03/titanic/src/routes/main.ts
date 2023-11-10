@@ -4,6 +4,7 @@ import { Passengers, PassengersSex, PassengersSurvived } from "../model";
 import { log } from "console";
 import { readFile, writeFile } from 'node:fs/promises';
 import path from "path";
+import { authentified } from '../middleware'
 
 const csvFilePath: string | undefined = process.env.DATA_URL;
 const pathStatJSON = path.join(__dirname, `../src/${csvFilePath}/stat.json`);
@@ -17,16 +18,16 @@ router.get("/passengers", async function (req: Request, res: Response) {
     res.json(data);
 });
 
-router.get("/passengers/Survived/:status", async function (req: Request, res: Response) {
+router.get("/passengers/Survived/:status", authentified, async function (req: Request, res: Response) {
     const status: string = req.params.status;
     const data = await PassengersSurvived(status);
-    log(data)
+    // log(data)
 
     res.json(data);
 });
 
 
-router.get("/passengers/Sex/:s", async function (req: Request, res: Response) {
+router.get("/passengers/Sex/:s", authentified, async function (req: Request, res: Response) {
     const s: string = req.params.s;
     const q = req.query ;
     const data = await PassengersSex(s, q);

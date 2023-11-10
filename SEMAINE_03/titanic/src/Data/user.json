@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "name": "Alan",
+        "name": "alan",
         "email": "alan@alan.fr" ,
-        "password": "alan",
+        "password": "$2b$10$v57va4yCxa3fnGSKGX0tCeyagOyKA5kDMCfi7RLum8RRXghbSptyG",
         "status": "On"
     }
 ]

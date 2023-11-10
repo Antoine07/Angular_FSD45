@@ -13,8 +13,7 @@ export class GuardService {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): any | boolean {
 
-    return true;
-
+    if (this.aS.authState) return true;
 
     this.router.navigate(['/login'], {
       queryParams: { messageError: 'Error authentification' }

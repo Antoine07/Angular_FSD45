@@ -54,11 +54,11 @@ export async function PassengersSex(sex: string, q: any): Promise<Passenger[]> {
 export async function findUser( email : string, password? : string): Promise<User | undefined> {
 
     try {
-        const options: any = { encoding: "utf8" }
-        const data : any = await fs.readFile(pathUser, options);
+        const data : string = fs.readFileSync(pathUser, 'utf-8');
 
         const users: User[] = JSON.parse(data);
         const user = users.find(u =>  u.email == email || u.password == password);
+        console.log(user);
 
         if ( user ) return user ;
 

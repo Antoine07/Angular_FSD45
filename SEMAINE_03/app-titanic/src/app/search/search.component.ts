@@ -9,7 +9,7 @@ import Chart from 'chart.js/auto'
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements AfterViewInit  {
+export class SearchComponent implements AfterViewInit {
   @ViewChild('graphTitanic') graphTitanic?: ElementRef;
 
   searchForm: FormGroup = this.fb.group(
@@ -24,14 +24,14 @@ export class SearchComponent implements AfterViewInit  {
 
   results: Passenger[] = [];
 
-  constructor(private fb: FormBuilder, private tS: TitanicService) { 
+  constructor(private fb: FormBuilder, private tS: TitanicService) {
     console.log("constructor")
   }
 
   ngAfterViewInit() {
-   this.createChart([], []);
+    this.createChart([], []);
 
-   console.log("after view init")
+    console.log("after view init")
   }
 
   get sex() {
@@ -43,19 +43,22 @@ export class SearchComponent implements AfterViewInit  {
   get age() { return this.searchForm.get('age'); }
 
   onSubmit() {
-    console.log('Formulaire soumis avec succès!', this.searchForm.value);
-
     const { sex, age, pclass, survived } = this.searchForm.value;
 
-   this.tS.search({ sex, age, pclass, survived }).subscribe(passengers => {
+    this.tS.search({ sex, age, pclass, survived }).subscribe(passengers => {
 
-    this.results = passengers;
-
-   })
+      this.results = passengers;
+    })
 
   }
 
-  createChart(data : any, labels : any) {
+  onCancel():void{
+    this.results = [];
+    console.log("CANCEL");
+    
+  }
+
+  createChart(data: any, labels: any) {
     const ctx = this.graphTitanic?.nativeElement.getContext('2d');
 
     const graphTitanic = new Chart(ctx, {

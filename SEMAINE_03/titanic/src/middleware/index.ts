@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { Response, Request, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
